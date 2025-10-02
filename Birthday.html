@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3D Cube Page — Left Image · Center Text · Right Cube</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --panel:#0b1220;
+      --accent:#8bd3ff;
+      --cube-size:320px;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#06121a 0%, #081827 100%);
+      color:#e6f3ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+
+    .page{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:220px 1fr 380px; /* Left fixed image, center, right cube */
+      align-items:center;
+      padding:40px 24px;
+      box-sizing:border-box;
+      gap:24px;
+    }
+
+    .left-fixed{
+      width:200px;
+      height:400px;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 8px 30px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.04);
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.05));
+      justify-self:start;
+    }
+    .left-fixed img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .center{
+      padding:36px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 6px 30px rgba(2,6,23,0.5);
+      border:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+      max-width:100%;
+    }
+    .center h1{ margin:0 0 12px 0; font-size: clamp(20px, 3.2vw, 34px); color:var(--accent); }
+    .center p{ margin:0 0 18px 0; line-height:1.55; color: #dbeffd; }
+    .center .cta{display:inline-block;padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(139,211,255,0.18);}
+
+    .right{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      min-height:360px;
+    }
+
+    .stage{
+      width:var(--cube-size);
+      height:var(--cube-size);
+      perspective:1200px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .cube-wrap{
+      width:100%;
+      height:100%;
+      position:relative;
+      transform-style:preserve-3d;
+    }
+
+    .cube{
+      position:relative;
+      width:100%;
+      height:100%;
+      transform-style:preserve-3d;
+      animation:spin 12s linear infinite;
+      will-change:transform;
+    }
+
+    .face{
+      position:absolute;
+      width:100%;
+      height:100%;
+      left:0; top:0;
+      backface-visibility:hidden;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.04);
+      background-size:cover;
+      background-position:center;
+    }
+
+    .face.front  { transform: translateZ(calc(var(--cube-size)/2)); }
+    .face.back   { transform: rotateY(180deg) translateZ(calc(var(--cube-size)/2)); }
+    .face.right  { transform: rotateY(90deg) translateZ(calc(var(--cube-size)/2)); }
+    .face.left   { transform: rotateY(-90deg) translateZ(calc(var(--cube-size)/2)); }
+    .face.top    { transform: rotateX(90deg) translateZ(calc(var(--cube-size)/2)); }
+    .face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size)/2)); }
+
+    @keyframes spin{
+      from{ transform: rotateX(10deg) rotateY(0deg); }
+      to  { transform: rotateX(10deg) rotateY(360deg); }
+    }
+
+    .controls{ margin-top:18px; text-align:center; }
+    .controls button{ margin:0 6px; padding:8px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; cursor:pointer; }
+
+    @media(max-width:980px){
+      :root{ --cube-size:260px }
+      .page{ grid-template-columns: 160px 1fr; grid-template-rows:auto auto; }
+      .right{ grid-column:1 / -1; justify-content:center; margin-top:20px; }
+    }
+
+    @media(max-width:720px){
+      .page{ grid-template-columns:1fr; }
+      .left-fixed{ display:none; }
+      .right{ justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <div class="left-fixed">
+      <img src="assets/Rupa1.jpg" alt="Fixed left image" />
+    </div>
+
+    <main class="center" role="main">
+      <h1><i>HAPPY BIRTHDAY SHILPA DEVI KUPPALA</i></h1>
+      <p>
+        Many More Happy Returns Of The Day Kuppala.I Wish You All The Success and Happiness In Your Life.You Are The True Person I Have Seen In My Life.You Made Me (😀 😂 😭 🥹 😊 😌 😘 🥰 😍 🤩 🥳 🫠 🤭 😡 🤐 🥵 🥶 😎 ⭐ ♥
+) .You Are The One Who Brings Out All My Emotions.You Are Truly Inspirational and Adorable.I am Very Happy When You Are Beside Me and That Cute Moments Between Us Made Our Bond Special.I Love The Way You Show Care On Me and The Way You Treat Me.
+I am Very Happy That Your Part Of My Life.Thank You So Much For Existing.
+      </p>
+      <p>
+        I Think Words Can't Explain The Happiness Of Mine Because Of You.
+        Once Again Happy Birthday Shilpa Devi kuppala ❤.
+      </p>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <a class="cta" href="#" onclick="document.getElementById('bgMusic').play();return false;">Play music</a>
+        <a class="cta" href="#" onclick="document.getElementById('bgMusic').pause();return false;">Pause music</a>
+      </div>
+    </main>
+
+    <aside class="right" aria-label="3D cube area">
+      <div>
+        <div class="stage">
+          <div class="cube-wrap" id="cubeWrap">
+            <div class="cube" id="cube">
+              <div class="face front"  style="background-image:url('assets/Rupa1.jpg')"></div>
+              <div class="face back"   style="background-image:url('assets/Rupa2.jpg')"></div>
+              <div class="face right"  style="background-image:url('assets/Rupa3.jpg')"></div>
+              <div class="face left"   style="background-image:url('assets/Rupa4.jpg')"></div>
+              <div class="face top"    style="background-image:url('assets/Rupa5.jpg')"></div>
+              <div class="face bottom" style="background-image:url('assets/Rupa6.jpg')"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="btnPause">Pause</button>
+          <button id="btnResume">Resume</button>
+          <button id="btnSlow">Slow</button>
+          <button id="btnFast">Fast</button>
+        </div>
+
+        <div style="margin-top:12px;text-align:center;">
+          <audio id="bgMusic" src="assets/music.mp3" controls loop preload="none"></audio>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script>
+    const cube = document.getElementById('cube');
+    const btnPause = document.getElementById('btnPause');
+    const btnResume = document.getElementById('btnResume');
+    const btnSlow = document.getElementById('btnSlow');
+    const btnFast = document.getElementById('btnFast');
+
+    let speed = 12;
+    function setSpeed(s){
+      speed = s;
+      cube.style.animationDuration = speed + 's';
+    }
+
+    btnPause.addEventListener('click', ()=> cube.style.animationPlayState = 'paused');
+    btnResume.addEventListener('click', ()=> cube.style.animationPlayState = 'running');
+    btnSlow.addEventListener('click', ()=> setSpeed(Math.min(60, speed + 6)));
+    btnFast.addEventListener('click', ()=> setSpeed(Math.max(1.5, speed - 3)));
+
+    const cubeWrap = document.getElementById('cubeWrap');
+    cubeWrap.addEventListener('mouseenter', ()=> cube.style.animationPlayState = 'paused');
+    cubeWrap.addEventListener('mouseleave', ()=> cube.style.animationPlayState = 'running');
+
+    const bg = document.getElementById('bgMusic');
+    function tryPlay(){
+      bg.play().catch(()=>{});
+      window.removeEventListener('click', tryPlay);
+      window.removeEventListener('touchstart', tryPlay);
+    }
+    window.addEventListener('click', tryPlay);
+    window.addEventListener('touchstart', tryPlay);
+
+    [btnPause, btnResume, btnSlow, btnFast].forEach(b => b.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); b.click(); }
+    }));
+  </script>
+</body>
+</html>
